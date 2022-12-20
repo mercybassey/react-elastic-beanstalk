@@ -34,7 +34,7 @@ jobs:
         uses: einaregilsson/beanstalk-deploy@v14
         with:
          #  Input the credentials you used to setup AWS CLI and credentials for the application environment
-          aws_access_key_id: ${{secrets.ACCESS_KEY}}"
+          aws_access_key: ${{secrets.ACCESS_KEY}}"
           aws_secret_key: ${{secrets.ACCESS_SECRET_KEY}}"
           application_name: react-app
           environment_name: react-app-dev
