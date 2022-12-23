@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: Checkout Latest Repo
         # checks out your repository under the GitHub workspace so that your workflow can access it
-        uses: actions/checkout@master
+        uses: actions/checkout@v2
 
       - name: Generate Deployment Package 
         # zip all files except .git
@@ -41,7 +41,7 @@ jobs:
           aws_secret_key: "${{ secrets.SECRET_ACCESS_KEY }}"
           application_name: react-app
           environment_name: react-app-dev
-          version_label: "${{ steps.format-time.outputs.replaced }}"
+          version_label: "app-${{ steps.format-time.outputs.replaced }}"
           region: us-west-2
           deployment_package: deploy-dog-app.zip
 
