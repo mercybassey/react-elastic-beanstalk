@@ -14,12 +14,9 @@ jobs:
       - name: Checkout Latest Repo
         # checks out your repository under the GitHub workspace so that your workflow can access it
         uses: actions/checkout@master
+        run: npm install
+        run: npm run build
 
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-        
       - name: Generate Deployment Package 
         # zip all files except .git
         run: zip -r deploy-dog-app.zip * -x "**node_modules**"
@@ -39,11 +36,11 @@ jobs:
           flags: 'g'
           
       - name: Deploy to EB
-        uses: einaregilsson/beanstalk-deploy@v14
+        uses: einaregilsson/beanstalk-deploy@v21
         with:
          #  input the credentials you used to setup AWS CLI and credentials for the application environment
-          aws_access_key: ${{secrets.ACCESS_KEY}}"
-          aws_secret_key: ${{secrets.ACCESS_SECRET_KEY}}"
+          aws_access_key: ${{ secrets.ACCESS_KEY }}"
+          aws_secret_key: ${{ secrets.ACCESS_SECRET_KEY }}"
           application_name: react-app
           environment_name: react-app-dev
           version_label: "${{ steps.format-time.outputs.replaced }}"
@@ -52,3 +49,8 @@ jobs:
 
       - name: Deployed!
         run: echo App deployed to ELB
+
+
+
+        # access key = AKIA4JYCHQNH2L4VNQRZ
+        # secret = k7t1UnzhQJM1XTERCgBHdMYlMrWqirU2Tgp0+izq
