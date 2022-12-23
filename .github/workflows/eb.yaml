@@ -7,14 +7,22 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest # the operating system your job should run on
+    strategy:
+      matrix:
+        node-version: [17.x]
     steps:
       - name: Checkout Latest Repo
         # checks out your repository under the GitHub workspace so that your workflow can access it
         uses: actions/checkout@master
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
         
       - name: Generate Deployment Package 
         # zip all files except .git
-        run: zip -r deploy-dog-app.zip * -x '*.git*'
+        run: zip -r deploy-dog-app.zip * -x "**node_modules**"
 
       - name: Get timestamp
         uses: gerred/actions/current-time@master
@@ -41,3 +49,6 @@ jobs:
           version_label: "${{ steps.format-time.outputs.replaced }}"
           region: us-west-1
           deployment_package: deploy-dog-app.zip
+
+      - name: Deployed!
+        run: echo App deployed to ELB
