@@ -37,8 +37,8 @@ jobs:
         uses: einaregilsson/beanstalk-deploy@v21
         with:
          #  input the credentials you used to setup AWS CLI and credentials for the application environment
-          aws_access_key: ${{ secrets.ACCESS_KEY }}"
-          aws_secret_key: ${{ secrets.ACCESS_SECRET_KEY }}"
+          aws_access_key: "${{ secrets.ACCESS_KEY }}"
+          aws_secret_key: "${{ secrets.ACCESS_SECRET_KEY }}"
           application_name: react-app
           environment_name: react-app-dev
           version_label: "${{ steps.format-time.outputs.replaced }}"
@@ -52,3 +52,6 @@ jobs:
 
         # access key = AKIA4JYCHQNH2L4VNQRZ
         # secret = k7t1UnzhQJM1XTERCgBHdMYlMrWqirU2Tgp0+izq
+
+        # 2 access key = AKIA4JYCHQNHYB2NE6UN
+        # 2 secret key = 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
