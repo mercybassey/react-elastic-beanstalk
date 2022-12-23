@@ -42,7 +42,7 @@ jobs:
           application_name: react-app
           environment_name: react-app-dev
           version_label: "${{ steps.format-time.outputs.replaced }}"
-          region: us-east-1
+          region: us-west-2
           deployment_package: deploy-dog-app.zip
 
       - name: Deployed!
