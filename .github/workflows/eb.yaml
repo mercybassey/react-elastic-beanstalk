@@ -49,5 +49,5 @@ jobs:
         run: echo App deployed to ELB
 
 
-        # 2 access key = AKIA4JYCHQNHUHEV6E3J
-        # 2 secret key = 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
+        # 2 access key = AKIA4JYCHQNHXR4ISBKN
+        # 2 secret key = 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
